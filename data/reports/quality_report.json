@@ -1,0 +1,16 @@
+{
+  "total_rows": 9215,
+  "duplicate_stable_keys": 0,
+  "missing_rate_by_column": {
+    "restaurant_name": 0.0,
+    "location_city": 0.0,
+    "cuisines": 0.0,
+    "average_cost_for_two": 0.0,
+    "rating": 0.0,
+    "metadata_tags": 0.0
+  },
+  "invalid_rating_count": 0,
+  "invalid_cost_count": 0,
+  "outlier_cost_count": 0,
+  "outlier_rating_count": 0
+}

@@ -1,0 +1,30 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.5, pytest-9.0.2, pluggy-1.6.0
+rootdir: C:\Users\ASUS\OneDrive\Desktop\PM\M 1
+plugins: anyio-4.13.0
+collected 8 items
+
+tests\test_phase2_validation.py ...                                      [ 37%]
+tests\test_phase3_retrieval.py ...                                       [ 75%]
+tests\test_phase4_llm.py F.                                              [100%]
+
+================================== FAILURES ===================================
+____________________ test_phase4_fallback_without_api_key _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002832F697DA0>
+
+    def test_phase4_fallback_without_api_key(monkeypatch) -> None:
+        monkeypatch.delenv("GROQ_API_KEY", raising=False)
+        original = _baseline_items()
+        reranked = apply_llm_reranking(_request(), original)
+        assert [x.restaurant_name for x in reranked] == [x.restaurant_name for x in original]
+>       assert [x.explanation for x in reranked] == [x.explanation for x in original]
+E       AssertionError: assert ['High rating...Alpha Spice.'] == ['Baseline A', 'Baseline B']
+E         
+E         At index 0 diff: 'High rating (4.5) and confidence (0.9) in North Indian cuisine. Tradeoff: Higher estimated cost (1200) compared to Budget Bites.' != 'Baseline A'
+E         Use -v to get more diff
+
+tests\test_phase4_llm.py:56: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_phase4_llm.py::test_phase4_fallback_without_api_key - Asser...
+========================= 1 failed, 7 passed in 3.01s =========================

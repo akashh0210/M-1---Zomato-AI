@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --zomato-red: #CB202D;
+  --zomato-red-hover: #E23744;
+  --bg-color: #FAFAFA;
+  --text-primary: #1C1C1C;
+  --text-secondary: #696969;
+  --card-bg: #FFFFFF;
+  --border-color: #EAEAEA;
+  --pill-bg: #FEECEE;
+  --pill-text: #CB202D;
+  
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  --hero-gradient: linear-gradient(135deg, #1d2b27 0%, #201a1c 50%, #4a2f18 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: var(--bg-color);
+}
+
+.logo-text {
+  color: var(--zomato-red);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.nav-links li.active {
+  color: var(--zomato-red);
+  border-bottom: 2px solid var(--zomato-red);
+  padding-bottom: 4px;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ccc;
+  overflow: hidden;
+}
+
+/* HERO SECTION */
+.hero-section {
+  background: var(--hero-gradient);
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.search-card {
+  background-color: var(--card-bg);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.search-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-title span {
+  color: var(--zomato-red);
+  font-style: italic;
+  font-weight: 800;
+}
+
+.search-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* NATURAL LANGUAGE INPUT */
+.nl-input-wrapper {
+  background-color: #FFF5F6;
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: #A0A0A0;
+}
+.nl-input-wrapper input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  outline: none;
+}
+
+/* TAG PILLS */
+.tag-pills {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.pill {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--card-bg);
+}
+
+.pill.active {
+  background: var(--zomato-red);
+  color: white;
+  border-color: var(--zomato-red);
+}
+
+/* STRUCTURED FILTERS */
+.filters-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.filter-input {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.filter-input:focus {
+  border-bottom-color: var(--zomato-red);
+}
+
+/* CTA BUTTON */
+.cta-btn {
+  background-color: var(--zomato-red);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1.25rem;
+  width: 100%;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.cta-btn:hover:not(:disabled) {
+  background-color: var(--zomato-red-hover);
+}
+.cta-btn:disabled {
+  opacity: 0.6;
+}
+
+.ai-insight {
+  position: absolute;
+  bottom: -2rem;
+  right: -2rem;
+  background: #FEF3EB;
+  border: 1px solid #F5D3B8;
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 250px;
+  text-align: left;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  display: flex;
+  gap: 0.75rem;
+}
+.ai-insight-title {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #B45309;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.ai-insight-text {
+  font-size: 0.85rem;
+  color: #78350F;
+  line-height: 1.2;
+}
+
+/* RESULTS SECTION */
+.results-section {
+  padding: 5rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-content: start;
+}
+
+.main-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 600px;
+  background: #333;
+}
+
+.main-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.8) 100%);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+}
+
+.ai-reason-pill {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.ai-reason-pill span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.ai-reason-pill p {
+  font-size: 0.95rem;
+  color: white;
+  margin: 0;
+}
+
+.main-card h3 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.main-card-meta {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.secondary-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.secondary-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.secondary-card-content {
+  padding: 1.5rem;
+}
+
+.small-tag {
+  color: #92400E;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.secondary-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.secondary-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.explore-link {
+  color: var(--zomato-red);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tertiary-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.icon-box {
+  background: #FEECEE;
+  color: var(--zomato-red);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
