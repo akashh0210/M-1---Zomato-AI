@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from phase2.schemas import RecommendationRequest, RecommendationResponse
 from phase3.service import load_processed_data, recommend, get_all_locations, get_all_cuisines
@@ -10,6 +11,14 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 app = FastAPI(title="Restaurant Recommendation API", version="0.1.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all domains for ease of deployment, specifically Vercel
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 ui_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ui")
 os.makedirs(ui_dir, exist_ok=True)
