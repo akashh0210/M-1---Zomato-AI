@@ -340,7 +340,16 @@ Prepare the solution for stable deployment, observability, and iterative improve
 
 ---
 
-## 7) Definition of Done (Project Level)
+## 7) Deployment Strategy
+
+The application components will be deployed on the following platforms for production and testing usage:
+
+- **Frontend Deployment**: The Next.js web application will be hosted on **Vercel** to utilize its seamless integration with Next.js, Edge Network delivery, and automatic preview environments.
+- **Backend Deployment**: The Python backend API will be deployed using **Streamlit** Community Cloud instances for rapid, accessible deployment of the data and ML microservices.
+
+---
+
+## 8) Definition of Done (Project Level)
 
 The project is complete when:
 - Users can submit preferences and get relevant recommendations.
