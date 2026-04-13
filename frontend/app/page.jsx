@@ -27,18 +27,30 @@ export default function Home() {
 
   useEffect(() => {
     fetch('/api/locations')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Backend Error (${res.status}): Failed to load locations. Please check your Render URL and ensure it doesn't end in /api`);
+        return res.json();
+      })
       .then(data => {
         if (data.locations) setLocations(data.locations);
       })
-      .catch(err => console.error("Failed to load locations", err));
+      .catch(err => {
+        console.error("Failed to load locations", err);
+        setError(`Failed to connect to backend: ${err.message}`);
+      });
       
     fetch('/api/cuisines')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Backend Error (${res.status}): Failed to load cuisines.`);
+        return res.json();
+      })
       .then(data => {
         if (data.cuisines) setCuisines(data.cuisines);
       })
-      .catch(err => console.error("Failed to load cuisines", err));
+      .catch(err => {
+        console.error("Failed to load cuisines", err);
+        // We only set error once
+      });
   }, []);
 
   const handleSubmit = async (e) => {
