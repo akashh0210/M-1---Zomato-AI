@@ -95,5 +95,5 @@ def test_returns_cuisine_suggestions_when_cuisine_not_found() -> None:
     recommendations, suggestions, message = recommend(request, _sample_df())
     assert recommendations == []
     assert message is not None
-    assert "chinese" in suggestions
+    assert any(s.lower() == "chinese" for s in suggestions)
 

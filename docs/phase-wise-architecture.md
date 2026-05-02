@@ -275,7 +275,7 @@ Prepare the solution for stable deployment, observability, and iterative improve
 
 ### Production Architecture
 - **Frontend Deployment**: Vercel (Next.js Application)
-- **Backend Deployment**: Streamlit
+- **Backend Deployment**: Render.com
 - Managed database for restaurant records
 - Secret management for API keys
 - Rate limiting and request quotas
@@ -311,11 +311,11 @@ Prepare the solution for stable deployment, observability, and iterative improve
 - **Backend**: Python (`FastAPI`)
 - **Data processing**: `pandas` + `pyarrow`
 - **Storage**: local Parquet for snapshots (ready for PostgreSQL)
-- **LLM**: Groq (or Provider-agnostic wrapper)
-- **Frontend**: Next.js (App Router) with Vanilla CSS (Themeable Light/Dark Mode)
+- **LLM**: Groq (LPU Inference)
+- **Frontend**: Next.js 14 (App Router) with Vanilla CSS
 - **Testing**: `pytest`, integration + E2E suites
-- **Observability**: OpenTelemetry + centralized logs
-- **Deployment**: Backend on Streamlit, Frontend on Vercel
+- **Observability**: Structured logging + quality reports
+- **Deployment**: Backend on Render.com, Frontend on Vercel
 ---
 
 ## 5) Risk Register and Mitigations
@@ -345,7 +345,7 @@ Prepare the solution for stable deployment, observability, and iterative improve
 The application components will be deployed on the following platforms for production and testing usage:
 
 - **Frontend Deployment**: The Next.js web application will be hosted on **Vercel** to utilize its seamless integration with Next.js, Edge Network delivery, and automatic preview environments.
-- **Backend Deployment**: The Python backend API will be deployed using **Streamlit** Community Cloud instances for rapid, accessible deployment of the data and ML microservices.
+- **Backend Deployment**: The Python backend API will be deployed using **Render.com** for robust, scalable hosting of the FastAPI microservices.
 
 ---
 

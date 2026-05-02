@@ -32,7 +32,9 @@ def get_all_cuisines(df: pd.DataFrame) -> List[str]:
     return sorted(unique_values)
 
 
-def _normalize_cuisine_list(values: Sequence[str]) -> List[str]:
+def _normalize_cuisine_list(values: str | Sequence[str]) -> List[str]:
+    if isinstance(values, str):
+        values = [values]
     out: List[str] = []
     for value in values:
         parts = [part.strip().title() for part in str(value).split(",") if part.strip()]

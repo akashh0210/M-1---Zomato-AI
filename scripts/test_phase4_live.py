@@ -11,11 +11,11 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from phase2.api.main import app
-from phase2.api.schemas import RecommendationItem, RecommendationRequest
-from phase4.llm.config import get_groq_api_key, get_groq_model
-from phase4.llm.groq_client import GroqClient
-from phase4.llm.orchestrator import apply_llm_reranking
+from phase2.main import app
+from phase2.schemas import RecommendationItem, RecommendationRequest
+from phase4.config import get_groq_api_key, get_groq_model
+from phase4.groq_client import GroqClient
+from phase4.orchestrator import apply_llm_reranking
 
 
 def test_1_env_key_present() -> bool:
@@ -48,11 +48,10 @@ def test_2_direct_groq_connectivity() -> bool:
 def test_3_orchestrator_rerank() -> bool:
     req = RecommendationRequest(
         location="bangalore",
-        budget="medium",
+        budget=1500.0,
         cuisine=["north indian", "chinese"],
         min_rating=3.5,
         additional_preferences=["family-friendly", "quick service"],
-        top_n=2,
     )
     base = [
         RecommendationItem(
@@ -90,11 +89,10 @@ def test_4_api_recommendations_endpoint() -> bool:
     client = TestClient(app)
     payload = {
         "location": "whitefield",
-        "budget": "medium",
+        "budget": 1500.0,
         "cuisine": ["north indian", "chinese"],
         "min_rating": 3.8,
         "additional_preferences": ["family-friendly", "quick service"],
-        "top_n": 3,
     }
     try:
         response = client.post("/recommendations", json=payload)

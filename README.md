@@ -9,6 +9,25 @@ Phase 1 covers:
 - Schema-oriented quality checks
 - Persisting outputs for downstream phases
 
+## Tech Stack
+
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **Library**: React 18
+- **Styling**: Vanilla CSS (Custom Design System with Zomato branding)
+- **Deployment**: Vercel
+
+### Backend
+- **Framework**: FastAPI (Python)
+- **Server**: Uvicorn
+- **Deployment**: Render.com
+
+### AI & Data
+- **LLM Engine**: Groq Cloud API (LPU Inference)
+- **Orchestration**: Custom prompt management & fallback logic
+- **Data Processing**: Pandas, PyArrow
+- **Dataset**: Hugging Face `ManikaSaini/zomato-restaurant-recommendation`
+
 ## Setup
 
 ```bash
