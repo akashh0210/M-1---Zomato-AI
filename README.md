@@ -1,13 +1,19 @@
-# AI Restaurant Recommendation System
+# AI-Powered Restaurant Recommendation System
 
-## Phase 1 Implementation
+## Problem Statement & Goal
 
-Phase 1 covers:
-- Dataset ingestion from Hugging Face
-- Cleaning and normalization
-- Deduplication using a stable key
-- Schema-oriented quality checks
-- Persisting outputs for downstream phases
+Finding the perfect restaurant can be overwhelming due to information overload and generic search results. This project builds an AI-powered restaurant recommendation system—inspired by Zomato—that solves this problem by providing highly personalized, context-aware dining suggestions. 
+
+The system accepts user preferences (location, budget, cuisine, rating, and optional tags) and combines **deterministic filtering** with **LLM-based ranking and reasoning**. Instead of just returning a list of places, the system provides human-readable explanations detailing *why* a specific restaurant is the best fit for the user's current craving.
+
+## System Architecture
+
+The project is built using a modern, decoupled architecture designed for speed, accuracy, and scalability:
+
+- **Data Layer**: Ingests, cleans, and normalizes a real-world restaurant dataset from Hugging Face. Handles deduplication and schema validation, persisting the data in a fast, query-friendly Parquet format.
+- **Recommendation API Layer**: A robust Python/FastAPI backend that handles user input validation, applies strict deterministic filters (budget, location, rating), and manages candidate retrieval to minimize LLM hallucinations.
+- **Prompt and LLM Layer**: Integrates with the Groq Cloud API to perform soft-scoring and intelligent ranking on the shortlisted candidates. It generates structured JSON outputs containing the final recommendations and personalized rationales.
+- **Application/UI Layer**: A sleek, responsive Next.js frontend built with a custom Zomato-branded design system. It presents the user with an intuitive search interface and rich, photo-based recommendation cards.
 
 ## Tech Stack
 
@@ -21,78 +27,64 @@ Phase 1 covers:
 - **Framework**: FastAPI (Python)
 - **Server**: Uvicorn
 - **Deployment**: Render.com
+- **Uptime Management**: UptimeRobot (Ping monitoring)
 
 ### AI & Data
 - **LLM Engine**: Groq Cloud API (LPU Inference)
-- **Orchestration**: Custom prompt management & fallback logic
 - **Data Processing**: Pandas, PyArrow
-- **Dataset**: Hugging Face `ManikaSaini/zomato-restaurant-recommendation`
+- **Dataset**: Hugging Face (`ManikaSaini/zomato-restaurant-recommendation`)
+- **Storage**: Local Parquet (Ready for PostgreSQL migration)
 
-## Setup
+## Repository Structure
+
+- `data/` - Raw datasets, processed Parquet files, and quality reports.
+- `docs/` - Architecture documentation and API specifications.
+- `frontend/` - Next.js frontend application.
+- `scripts/` - Utility scripts for data ingestion and running the API.
+- `src/` - Core backend logic organized by implementation phases:
+  - `phase1/` - Data pipeline, ingestion, and validation.
+  - `phase2/` - API request/response schemas.
+  - `phase3/` - Deterministic candidate retrieval and soft-scoring engine.
+  - `phase4/` - Groq prompt orchestration and LLM parser logic.
+- `tests/` - Unit and integration testing suites.
+
+## Local Setup & Execution
+
+### 1. Backend Setup
+
+Ensure you have Python 3.10+ installed.
 
 ```bash
+# Create and activate virtual environment
 python -m venv .venv
-.venv\Scripts\activate
+source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
-```
 
-## Source Organization
-
-- `src/phase1/data_pipeline/` - ingestion, transformation, validation, pipeline runner
-- `src/phase2/api/` - request/response schemas and API endpoints
-- `src/phase3/api/` - deterministic candidate retrieval and soft-scoring engine
-- `src/phase4/llm/` - Groq prompt orchestration, parsing, and fallback logic
-
-## Run Phase 1 Pipeline
-
-```bash
+# Run the data ingestion pipeline (Required for first-time setup)
 python scripts/run_phase1.py
-```
 
-## Phase 2 API
+# Set your Groq API key in the environment
+export GROQ_API_KEY="your_api_key_here"  # On Windows use: set GROQ_API_KEY="your_api_key_here"
 
-Start API:
-
-```bash
+# Start the FastAPI server
 python scripts/run_api.py
 ```
+The backend API will run on `http://127.0.0.1:8000`.
 
-Set `.env` value before using LLM reranking:
+### 2. Frontend Setup
 
-```bash
-GROQ_API_KEY=<your_api_key>
-```
-
-Then call:
-
-- `POST http://127.0.0.1:8000/recommendations`
-- `GET http://127.0.0.1:8000/health`
-
-API contract:
-
-- `docs/api-spec.md`
-
-## Generated Artifacts
-
-- Raw snapshot: `data/raw/zomato_raw_<timestamp>.jsonl`
-- Processed dataset: `data/processed/restaurants.parquet`
-- Quality report: `data/reports/quality_report.json`
-
-## Phase 5 Frontend (Next.js)
-
-Since the UI has been upgraded to a React/Next.js dashboard, you need Node.js installed to run it.
-
-### Prerequisites
-1. Download and install Node.js from [nodejs.org](https://nodejs.org/).
-2. Verify installation by running `node -v` and `npm -v` in your terminal.
-
-### Run Frontend
-Open a dedicated terminal, navigate into the frontend directory, install dependencies, and start the development server:
+Ensure you have Node.js 18+ installed.
 
 ```bash
+# Navigate to the frontend directory
 cd frontend
+
+# Install dependencies
 npm install
+
+# Start the development server
 npm run dev
 ```
-
-The frontend will start on **http://localhost:3000** and will automatically proxy requests to the backend API (`http://127.0.0.1:8000`).
+The frontend UI will run on `http://localhost:3000` and proxy API requests to the backend automatically.
